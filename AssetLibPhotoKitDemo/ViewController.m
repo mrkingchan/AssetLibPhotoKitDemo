@@ -104,4 +104,25 @@
     return cell;
 }
 
+- (void)prectise {
+    _lib = [ALAssetsLibrary new];
+    [_lib  enumerateGroupsWithTypes:ALAssetsGroupAll
+                         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                             if (group.numberOfAssets > 0) {
+                                 //分组设置过滤器
+                                 ALAssetsFilter *fliter = [ALAssetsFilter allAssets];
+                                 [group setAssetsFilter:fliter];
+                                 [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                                     if (result) {
+                                         if ([[result  valueForProperty:ALAssetPropertyType]  isEqualToString:ALAssetTypePhoto]) {
+                                             UIImage *resultImage = [UIImage imageWithCGImage:[result thumbnail]];
+                                             [_photos addObject:resultImage];
+                                         }
+                                     }
+                                 }];
+                             }
+                         } failureBlock:^(NSError *error) {
+                             NSLog(@"error = %@",error);
+                         }];
+}
 @end

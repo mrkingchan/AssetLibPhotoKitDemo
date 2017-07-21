@@ -53,9 +53,9 @@
             _des.textColor = [UIColor redColor];
             _des.text = [NSString stringWithFormat:@"Video:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
         } else {
+            _des.textColor = [UIColor blueColor];
             _des.text = [NSString stringWithFormat:@"photo:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
         }
-        
         //获取内容图片
         /*ALAssetRepresentation *representation = [image defaultRepresentation];
         UIImage *contentImage = [UIImage imageWithCGImage:[representation fullScreenImage]];*/

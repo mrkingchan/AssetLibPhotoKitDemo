@@ -29,7 +29,7 @@
     layout.itemSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width - 10) / 3.0, 120);
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
-    
+ 
     ///初始化CollectionView
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor grayColor];
@@ -69,13 +69,14 @@
             [manager requestAVAssetForVideo:asset
                                     options:nil
                               resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
-                                  
+                                 
                               }];
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [_collectionView reloadData];
     });
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -87,6 +88,7 @@
     cell.backgroundColor = [UIColor orangeColor];
     [cell setCellWithData:_photos[indexPath.row]];
     return cell;
+    
 }
 
 @end
