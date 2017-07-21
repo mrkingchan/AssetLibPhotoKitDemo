@@ -1,5 +1,5 @@
 //
-//  Cell.h
+//  PhotoKitVC.h
 //  AssetLibPhotoKitDemo
 //
 //  Created by Chan on 2017/7/21.
@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-@interface Cell : UICollectionViewCell
 
-- (void)setCellWithData:(id )image;
+@interface PhotoKitVC : UIViewController
 
 @end

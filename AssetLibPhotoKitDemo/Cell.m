@@ -37,22 +37,32 @@
 }
 
 ///setCellWithData
-- (void)setCellWithData:(ALAsset *)image {
-    CGImageRef  thumbnailRef = [image thumbnail];
-    UIImage *thumbnailImg = [[UIImage alloc]initWithCGImage:thumbnailRef];
-    [_imageView setImage:thumbnailImg];
-    id type = [image valueForProperty:ALAssetPropertyType];  //这里的type是Str类型
-    if ([type isEqualToString:ALAssetTypeVideo]) {
-        _video.hidden = NO;
-    } else {
+- (void)setCellWithData:(id)image {
+    if ([image isKindOfClass:[ALAsset class]]) {
+        CGImageRef  thumbnailRef = [image thumbnail];
+        UIImage *thumbnailImg = [[UIImage alloc]initWithCGImage:thumbnailRef];
+        [_imageView setImage:thumbnailImg];
+        id type = [image valueForProperty:ALAssetPropertyType];  //这里的type是Str类型
+        if ([type isEqualToString:ALAssetTypeVideo]) {
+            _video.hidden = NO;
+        } else {
+            _video.hidden = YES;
+        }
+        
+        if ([[image  valueForProperty:ALAssetPropertyType] isEqualToString: ALAssetTypeVideo]) {
+            _des.textColor = [UIColor redColor];
+            _des.text = [NSString stringWithFormat:@"Video:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
+        } else {
+            _des.text = [NSString stringWithFormat:@"photo:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
+        }
+        
+        //获取内容图片
+        /*ALAssetRepresentation *representation = [image defaultRepresentation];
+        UIImage *contentImage = [UIImage imageWithCGImage:[representation fullScreenImage]];*/
+    } else if ([image isKindOfClass:[UIImage class]]) {
+        //存储的是image
+        [_imageView setImage:image];
         _video.hidden = YES;
-    }
-    
-    if ([[image  valueForProperty:ALAssetPropertyType] isEqualToString: ALAssetTypeVideo]) {
-        _des.textColor = [UIColor redColor];
-        _des.text = [NSString stringWithFormat:@"Video:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
-    } else {
-        _des.text = [NSString stringWithFormat:@"photo:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
     }
 }
 @end

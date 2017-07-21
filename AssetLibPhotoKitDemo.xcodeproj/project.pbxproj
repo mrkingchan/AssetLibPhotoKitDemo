@@ -16,6 +16,7 @@
 		D29A6DB01F21AB50005B478D /* AssetLibPhotoKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DAF1F21AB50005B478D /* AssetLibPhotoKitDemoTests.m */; };
 		D29A6DBB1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DBA1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m */; };
 		D29A6DCA1F21B2B4005B478D /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DC91F21B2B4005B478D /* Cell.m */; };
+		D29A6DCD1F21D8AB005B478D /* PhotoKitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DCC1F21D8AB005B478D /* PhotoKitVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		D29A6DBC1F21AB50005B478D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D29A6DC81F21B2B4005B478D /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
 		D29A6DC91F21B2B4005B478D /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
+		D29A6DCB1F21D8AB005B478D /* PhotoKitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoKitVC.h; sourceTree = "<group>"; };
+		D29A6DCC1F21D8AB005B478D /* PhotoKitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoKitVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,8 @@
 				D29A6D991F21AB50005B478D /* AppDelegate.m */,
 				D29A6D9B1F21AB50005B478D /* ViewController.h */,
 				D29A6D9C1F21AB50005B478D /* ViewController.m */,
+				D29A6DCB1F21D8AB005B478D /* PhotoKitVC.h */,
+				D29A6DCC1F21D8AB005B478D /* PhotoKitVC.m */,
 				D29A6DC81F21B2B4005B478D /* Cell.h */,
 				D29A6DC91F21B2B4005B478D /* Cell.m */,
 				D29A6D9E1F21AB50005B478D /* Main.storyboard */,
@@ -282,6 +287,7 @@
 				D29A6D9D1F21AB50005B478D /* ViewController.m in Sources */,
 				D29A6DCA1F21B2B4005B478D /* Cell.m in Sources */,
 				D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */,
+				D29A6DCD1F21D8AB005B478D /* PhotoKitVC.m in Sources */,
 				D29A6D971F21AB50005B478D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +524,7 @@
 				D29A6DC11F21AB50005B478D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D29A6DC21F21AB50005B478D /* Build configuration list for PBXNativeTarget "AssetLibPhotoKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +533,7 @@
 				D29A6DC41F21AB50005B478D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D29A6DC51F21AB50005B478D /* Build configuration list for PBXNativeTarget "AssetLibPhotoKitDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +542,7 @@
 				D29A6DC71F21AB50005B478D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

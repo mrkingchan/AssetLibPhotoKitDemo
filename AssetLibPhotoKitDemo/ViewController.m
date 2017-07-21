@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "PhotoKitVC.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "Cell.h"
 #define kcellID @"cell"
@@ -29,11 +30,20 @@
     layout.minimumInteritemSpacing = 5;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
+    _collectionView.backgroundColor = [UIColor grayColor];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     [_collectionView registerClass:[Cell class] forCellWithReuseIdentifier:kcellID];
     [self.view addSubview:_collectionView];
     [self loadAssetData];
+    
+    self.navigationItem.title = @"AlassetLibrary";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"PushToPhotoLit" style:UIBarButtonItemStylePlain target:self action:@selector(pushAction)];
+}
+
+- (void)pushAction {
+    PhotoKitVC *VC = [PhotoKitVC new];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)loadAssetData {
@@ -60,20 +70,17 @@
                                         //安全判断
                                         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                                             //判断asset的类型(照片、视频)
-//                                            if ([[result  valueForProperty:ALAssetPropertyType] isEqualToString: ALAssetTypePhoto ]) {
-                                                /*ALAssetTypePhoto, ALAssetTypeVideo or ALAssetTypeUnknown*/
                                             if (result) {
                                                 [_photos addObject:result];                                                
                                             }
-//                                            }
                                         }];
+                                        //异步拉取，刷新UI的时候要在主线程中刷新
                                         dispatch_async(dispatch_get_main_queue(), ^{
                                             [_collectionView reloadData];
                                         });
                                     }
                                 } else {
                                     if (_photos.count > 0) {
-                                        //拿到了相册中的所有资源
                                         NSLog(@"photos = %@",_photos);
                                     } else {
                                         NSLog(@"相册资源为空!");
@@ -94,6 +101,5 @@
     [cell setCellWithData:_photos[indexPath.row]];
     return cell;
 }
-
 
 @end
