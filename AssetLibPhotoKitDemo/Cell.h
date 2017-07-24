@@ -12,4 +12,6 @@
 
 - (void)setCellWithData:(id )image;
 
+@property(nonatomic,strong) UIImageView * imageView;
+
 @end

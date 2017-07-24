@@ -48,7 +48,6 @@
         } else {
             _video.hidden = YES;
         }
-        
         if ([[image  valueForProperty:ALAssetPropertyType] isEqualToString: ALAssetTypeVideo]) {
             _des.textColor = [UIColor redColor];
             _des.text = [NSString stringWithFormat:@"Video:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];

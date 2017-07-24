@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		668AD94E94B8B4B952BAA012 /* libPods-AssetLibPhotoKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76632057A1F1D79C84A538 /* libPods-AssetLibPhotoKitDemo.a */; };
 		D29A6D971F21AB50005B478D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D961F21AB50005B478D /* main.m */; };
 		D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D991F21AB50005B478D /* AppDelegate.m */; };
 		D29A6D9D1F21AB50005B478D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D9C1F21AB50005B478D /* ViewController.m */; };
@@ -17,6 +18,7 @@
 		D29A6DBB1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DBA1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m */; };
 		D29A6DCA1F21B2B4005B478D /* Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DC91F21B2B4005B478D /* Cell.m */; };
 		D29A6DCD1F21D8AB005B478D /* PhotoKitVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DCC1F21D8AB005B478D /* PhotoKitVC.m */; };
+		D2B20F601F25914E00CA99D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B20F5F1F25914E00CA99D4 /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D76632057A1F1D79C84A538 /* libPods-AssetLibPhotoKitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AssetLibPhotoKitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1E03141F524B77FC26BF20F /* Pods-AssetLibPhotoKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssetLibPhotoKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AssetLibPhotoKitDemo/Pods-AssetLibPhotoKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D29A6D921F21AB50005B478D /* AssetLibPhotoKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetLibPhotoKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D29A6D961F21AB50005B478D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D29A6D981F21AB50005B478D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 		D29A6DC91F21B2B4005B478D /* Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cell.m; sourceTree = "<group>"; };
 		D29A6DCB1F21D8AB005B478D /* PhotoKitVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoKitVC.h; sourceTree = "<group>"; };
 		D29A6DCC1F21D8AB005B478D /* PhotoKitVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoKitVC.m; sourceTree = "<group>"; };
+		D2B20F5F1F25914E00CA99D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F9B69EC15F72822B07E14C4E /* Pods-AssetLibPhotoKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssetLibPhotoKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-AssetLibPhotoKitDemo/Pods-AssetLibPhotoKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2B20F601F25914E00CA99D4 /* UIKit.framework in Frameworks */,
+				668AD94E94B8B4B952BAA012 /* libPods-AssetLibPhotoKitDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43E8B882CE68B34091D99359 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1E03141F524B77FC26BF20F /* Pods-AssetLibPhotoKitDemo.debug.xcconfig */,
+				F9B69EC15F72822B07E14C4E /* Pods-AssetLibPhotoKitDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D29A6D891F21AB50005B478D = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +108,8 @@
 				D29A6DAE1F21AB50005B478D /* AssetLibPhotoKitDemoTests */,
 				D29A6DB91F21AB50005B478D /* AssetLibPhotoKitDemoUITests */,
 				D29A6D931F21AB50005B478D /* Products */,
+				43E8B882CE68B34091D99359 /* Pods */,
+				FDD4DDAED290561B9A85C2D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +169,15 @@
 			path = AssetLibPhotoKitDemoUITests;
 			sourceTree = "<group>";
 		};
+		FDD4DDAED290561B9A85C2D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2B20F5F1F25914E00CA99D4 /* UIKit.framework */,
+				3D76632057A1F1D79C84A538 /* libPods-AssetLibPhotoKitDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -157,9 +185,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D29A6DBF1F21AB50005B478D /* Build configuration list for PBXNativeTarget "AssetLibPhotoKitDemo" */;
 			buildPhases = (
+				05B83938585F89C755ADEC57 /* [CP] Check Pods Manifest.lock */,
 				D29A6D8E1F21AB50005B478D /* Sources */,
 				D29A6D8F1F21AB50005B478D /* Frameworks */,
 				D29A6D901F21AB50005B478D /* Resources */,
+				127DB5EEE081CE4398E01F4F /* [CP] Embed Pods Frameworks */,
+				F8427BE56BB786735BB54D9A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,6 +309,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		05B83938585F89C755ADEC57 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		127DB5EEE081CE4398E01F4F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AssetLibPhotoKitDemo/Pods-AssetLibPhotoKitDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8427BE56BB786735BB54D9A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AssetLibPhotoKitDemo/Pods-AssetLibPhotoKitDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D29A6D8E1F21AB50005B478D /* Sources */ = {
@@ -437,6 +516,7 @@
 		};
 		D29A6DC01F21AB50005B478D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E03141F524B77FC26BF20F /* Pods-AssetLibPhotoKitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VR97LDHCPV;
@@ -449,6 +529,7 @@
 		};
 		D29A6DC11F21AB50005B478D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9B69EC15F72822B07E14C4E /* Pods-AssetLibPhotoKitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VR97LDHCPV;

@@ -11,6 +11,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "Cell.h"
 #define kcellID @"cell"
+
+#import <MediaPlayer/MediaPlayer.h>
+
+#import <AVFoundation/AVFoundation.h>
+
 @interface ViewController () <UICollectionViewDelegate,UICollectionViewDataSource> {
     ALAssetsLibrary *_lib;
     NSMutableArray *_photos;
@@ -72,6 +77,7 @@
                                         //安全判断
                                         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                                             //判断asset的类型(照片、视频)
+                                            NSLog(@"result URL = %@\nDate = %@\n Location = %@",[result valueForProperty:ALAssetPropertyAssetURL],[result valueForProperty:ALAssetPropertyDate],[result valueForProperty:ALAssetPropertyLocation]);
                                             if (result) {
                                                 [_photos addObject:result];                                                
                                             }
@@ -124,5 +130,56 @@
                          } failureBlock:^(NSError *error) {
                              NSLog(@"error = %@",error);
                          }];
+}
+
+#pragma mark --UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    Cell *cell = (Cell *)[_collectionView cellForItemAtIndexPath:indexPath];
+    ALAsset *source = _photos[indexPath.row];
+    NSMutableArray *temPhotots = [NSMutableArray new];
+    NSString *typeStr = [source valueForProperty:ALAssetPropertyType];
+    if ([typeStr isEqualToString:ALAssetTypePhoto]) {
+        //照片
+        [temPhotots addObject:[UIImage imageWithCGImage:[source thumbnail]]];
+        //照片查看器
+        /*MJPhotoBrowser *browser = [MJPhotoBrowser new];
+        NSMutableArray *temArray = [NSMutableArray new];
+        for (UIImage *image in temPhotots) {
+            MJPhoto *photot = [MJPhoto new];
+            photot.srcImageView = cell.imageView;
+            [temPhotots addObject:photot];
+        }
+        browser.currentPhotoIndex = 0;
+        browser.showSaveBtn = NO;
+        [browser  show];*/
+    } else if ([typeStr isEqualToString:ALAssetTypeVideo]) {
+        //视频
+        NSURL *url = [source valueForProperty:ALAssetPropertyAssetURL];
+        MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:url];
+        [moviePlayer.moviePlayer prepareToPlay];
+        [self presentViewController:moviePlayer animated:YES completion:nil];
+        [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+        [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
+        [moviePlayer.view setFrame:self.view.bounds];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(movieFinishedCallback:)
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer.moviePlayer];
+        
+        
+        /*AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
+        AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+        playerLayer.frame = self.view.layer.bounds;
+        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+        [self.view.layer addSublayer:playerLayer];
+        [player play];*/
+    }
+}
+
+- (void)movieFinishedCallback:(NSNotification *)noti {
+    MPMoviePlayerController *player = noti.object;
+    [player stop];
 }
 @end
