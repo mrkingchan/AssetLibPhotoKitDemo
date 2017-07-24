@@ -11,6 +11,8 @@
 #import "Cell.h"
 #define kcellID @"cell"
 
+#import <MediaPlayer/MediaPlayer.h>
+
 @interface PhotoKitVC () <UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *_collectionView;
     NSMutableArray *_photos;
@@ -49,28 +51,10 @@
     PHFetchOptions *options = [PHFetchOptions new];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     PHFetchResult *results2 = [PHAsset fetchAssetsWithOptions:options];
-    PHCachingImageManager *manager = [PHCachingImageManager new];
     //遍历查找
     for (PHAsset *asset in results2) {
-        if (asset.mediaType == PHAssetMediaTypeImage) {
-            //照片
-            [manager requestImageForAsset:asset
-                               targetSize:CGSizeMake(200, 200)
-                              contentMode:PHImageContentModeDefault
-                                  options:[PHImageRequestOptions new]
-                            resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                                NSLog(@"result = %@,info = %@",result,info);
-                                if (result) {
-                                    [_photos addObject:result];
-                                }
-                            }];
-        } else if (asset.mediaType == PHAssetMediaTypeVideo) {
-            //视频
-            [manager requestAVAssetForVideo:asset
-                                    options:nil
-                              resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
-                                 
-                              }];
+        if (asset ) {
+            [_photos addObject:asset];
         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,8 +71,20 @@
     Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor orangeColor];
     [cell setCellWithData:_photos[indexPath.row]];
-    return cell;
     
+    cell.complete = ^(NSString *videoUrlPath) {
+        NSLog(@"videoUrlPath = %@",videoUrlPath);
+        //注意这里要在主线程进行
+        dispatch_async(dispatch_get_main_queue(), ^{
+            MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoUrlPath]];
+            [self presentViewController:moviePlayer animated:YES completion:nil];
+            [moviePlayer.moviePlayer prepareToPlay];
+            [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+            [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
+            [moviePlayer.view setFrame:self.view.bounds];
+        });
+    };
+    return cell;
 }
 
 @end

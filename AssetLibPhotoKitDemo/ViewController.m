@@ -166,7 +166,6 @@
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:moviePlayer.moviePlayer];
         
-        
         /*AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:url options:nil];
         AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
         AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
@@ -178,6 +177,7 @@
     }
 }
 
+///视频播放完成以后
 - (void)movieFinishedCallback:(NSNotification *)noti {
     MPMoviePlayerController *player = noti.object;
     [player stop];

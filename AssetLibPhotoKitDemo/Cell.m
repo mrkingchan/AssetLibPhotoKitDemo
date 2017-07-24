@@ -7,6 +7,8 @@
 //
 
 #import "Cell.h"
+#import <Photos/Photos.h>
+
 @interface Cell(){
     UIImageView *_imageView;
     UILabel *_des;
@@ -21,6 +23,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        _imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonAction:)];
+        [_imageView addGestureRecognizer:tap];
         [self addSubview:_imageView];
         
         _des = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width, 30)];
@@ -38,6 +43,7 @@
 
 ///setCellWithData
 - (void)setCellWithData:(id)image {
+    _asset = image;
     if ([image isKindOfClass:[ALAsset class]]) {
         CGImageRef  thumbnailRef = [image thumbnail];
         UIImage *thumbnailImg = [[UIImage alloc]initWithCGImage:thumbnailRef];
@@ -62,6 +68,83 @@
         //存储的是image
         [_imageView setImage:image];
         _video.hidden = YES;
+    } else if ([image isKindOfClass:[AVAsset class]]) {
+        //视频
+         _video.hidden = YES;
+        AVAsset *asset = (AVAsset *)image;
+    } else if ([image isKindOfClass:[NSDictionary class]]) {
+        //视频
+        _video.hidden = NO;
+        NSDictionary *info = (NSDictionary *)image;
+        NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
+        NSString *urlStr = [[pathStr componentsSeparatedByString:@":"] lastObject];
+        [_imageView setImage:[self getImage:urlStr]];
+    } else if ([image isKindOfClass:[PHAsset class]]) {
+        PHAsset *asset = (PHAsset *)image;
+        NSInteger mediaType = asset.mediaType;
+        PHCachingImageManager *manager = [PHCachingImageManager new];
+        if (mediaType == PHAssetMediaTypeImage) {
+            //照片
+            _video.hidden = YES;
+            [manager requestImageForAsset:asset
+                               targetSize:CGSizeMake(200, 200)
+                              contentMode:PHImageContentModeDefault
+                                  options:nil
+                            resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                                if (result) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [_imageView setImage:result];
+                                    });
+                                }
+                            }];
+        } else if (mediaType == PHAssetMediaTypeVideo) {
+            //视频
+            _video.hidden = NO;
+            [manager requestAVAssetForVideo:asset
+                                    options:nil
+                              resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                                  NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
+                                  NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
+                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                      [_imageView setImage:[self getImage:urlStr]];
+                                  });
+                              }];
+        }
+    }
+}
+
+-(UIImage *)getImage:(NSString *)videoURL{
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoURL] options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    return thumb;
+}
+
+#pragma mark --private Method
+- (void)buttonAction:(id)sender {
+    if ([sender  isKindOfClass:[UITapGestureRecognizer class]]) {
+        //PHAsset类
+        PHCachingImageManager *manager = [PHCachingImageManager new];
+        if ([_asset isKindOfClass:[PHAsset class]]) {
+            PHAsset *source = (PHAsset *)_asset;
+            if (source.mediaType == PHAssetMediaTypeVideo) {
+                //是视频
+                [manager requestAVAssetForVideo:source
+                                        options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                                            NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
+                                            NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
+                                            if (_complete) {
+                                                _complete(urlStr);
+                                            }
+                                        }];
+            }
+        }
     }
 }
 @end
