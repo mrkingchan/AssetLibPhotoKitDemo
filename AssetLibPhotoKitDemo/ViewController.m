@@ -16,6 +16,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+#import "MWPhoto.h"
+#import "MWPhotoBrowser.h"
+
 @interface ViewController () <UICollectionViewDelegate,UICollectionViewDataSource> {
     ALAssetsLibrary *_lib;
     NSMutableArray *_photos;
@@ -53,6 +56,7 @@
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+////loadAssetData
 - (void)loadAssetData {
     if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied) {
         NSDictionary *mainInfoDictionary = [[NSBundle mainBundle] infoDictionary];
@@ -109,7 +113,6 @@
     [cell setCellWithData:_photos[indexPath.row]];
     cell.complete = ^(NSURL *videoUrl) {
         NSLog(@"videoUrlPath = %@",videoUrl);
-        //注意这里要在主线程进行
         dispatch_async(dispatch_get_main_queue(), ^{
             MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:videoUrl];
             [self presentViewController:moviePlayer animated:YES completion:nil];
@@ -132,7 +135,7 @@
                                  [group setAssetsFilter:fliter];
                                  [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                                      if (result) {
-                                         if ([[result  valueForProperty:ALAssetPropertyType]  isEqualToString:ALAssetTypePhoto]) {
+                                         if ([[result valueForProperty:ALAssetPropertyType]  isEqualToString:ALAssetTypePhoto]) {
                                              UIImage *resultImage = [UIImage imageWithCGImage:[result thumbnail]];
                                              [_photos addObject:resultImage];
                                          }
@@ -144,7 +147,7 @@
                          }];
 }
 
-#pragma mark --UICollectionViewDelegate
+//#pragma mark --UICollectionViewDelegate
 //- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 //    Cell *cell = (Cell *)[_collectionView cellForItemAtIndexPath:indexPath];
 //    ALAsset *source = _photos[indexPath.row];
@@ -154,16 +157,25 @@
 //        //照片
 //        [temPhotots addObject:[UIImage imageWithCGImage:[source thumbnail]]];
 //        //照片查看器
-//        /*MJPhotoBrowser *browser = [MJPhotoBrowser new];
-//        NSMutableArray *temArray = [NSMutableArray new];
+//        /*NSMutableArray *temArray = [NSMutableArray new];
 //        for (UIImage *image in temPhotots) {
-//            MJPhoto *photot = [MJPhoto new];
-//            photot.srcImageView = cell.imageView;
-//            [temPhotots addObject:photot];
+//            MWPhoto *photot = [MWPhoto photoWithImage:image];
+//            [temArray addObject:photot];
 //        }
-//        browser.currentPhotoIndex = 0;
-//        browser.showSaveBtn = NO;
-//        [browser  show];*/
+//        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithPhotos:temPhotots];
+//        browser.displayActionButton = YES;
+//        browser.displayNavArrows = NO;
+//        browser.displaySelectionButtons = NO;
+//        browser.zoomPhotosToFill = YES;
+//        browser.alwaysShowControls = NO;
+//        browser.enableGrid = YES;
+//        browser.startOnGrid = NO;
+//        browser.autoPlayOnAppear = NO;
+//        [browser setCurrentPhotoIndex:1];
+//        [self.navigationController pushViewController:browser animated:YES];
+//        [browser showNextPhotoAnimated:YES];
+//        [browser showPreviousPhotoAnimated:YES];
+//        [browser setCurrentPhotoIndex:10];*/
 //    } else if ([typeStr isEqualToString:ALAssetTypeVideo]) {
 //        //视频
 //        NSURL *url = [source valueForProperty:ALAssetPropertyAssetURL];

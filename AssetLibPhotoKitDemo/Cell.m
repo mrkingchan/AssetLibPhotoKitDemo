@@ -34,7 +34,7 @@
         _des.font = [UIFont systemFontOfSize:11];
         [self addSubview:_des];
         
-        _video = [[UIImageView alloc]initWithFrame:CGRectMake(_imageView.frame.size.width/2 -10, _imageView.frame.size.height/2 -10 , 20, 20)];
+        _video = [[UIImageView alloc]initWithFrame:CGRectMake(_imageView.frame.size.width/2 -20, _imageView.frame.size.height/2 - 20 , 40, 40)];
         _video.image = [UIImage imageNamed:@"video"];
         [_imageView addSubview:_video];
     }

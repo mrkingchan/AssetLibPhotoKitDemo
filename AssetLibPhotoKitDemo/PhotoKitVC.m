@@ -27,12 +27,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"PhotoKit";
     _photos = [NSMutableArray new];
+    ///初始化CollectionView
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.itemSize = CGSizeMake(([UIScreen mainScreen].bounds.size.width - 10) / 3.0, 120);
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
- 
-    ///初始化CollectionView
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor grayColor];
     _collectionView.dataSource = self;
@@ -47,7 +46,6 @@
     //获取相册相当于 group 分组结果
     PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum
                                                                      subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    
     PHFetchOptions *options = [PHFetchOptions new];
     options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
     PHFetchResult *results2 = [PHAsset fetchAssetsWithOptions:options];
@@ -60,9 +58,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_collectionView reloadData];
     });
-
 }
 
+#pragma mark --UICollectionViewDataSource&Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _photos.count;
 }
@@ -73,7 +71,7 @@
     [cell setCellWithData:_photos[indexPath.row]];
     cell.complete = ^(NSURL *videoUrl) {
         NSLog(@"videoUrlPath = %@",videoUrl);
-        //注意这里要在主线程进行
+        //注意这里要在主线程进行跳转操作
         dispatch_async(dispatch_get_main_queue(), ^{
             MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:videoUrl];
             [self presentViewController:moviePlayer animated:YES completion:nil];
