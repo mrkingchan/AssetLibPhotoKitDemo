@@ -140,9 +140,19 @@
                                             NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
                                             NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
                                             if (_complete) {
-                                                _complete(urlStr);
+                                                _complete([NSURL fileURLWithPath:urlStr]);
                                             }
                                         }];
+            }
+        } else if ([_asset isKindOfClass:[ALAsset class]]) {
+            //视频
+            ALAsset *source = (ALAsset *)_asset;
+            if ([[source valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
+                //视频
+                NSURL *url = [source valueForProperty:ALAssetPropertyAssetURL];
+                if (_complete) {
+                    _complete(url);
+                }
             }
         }
     }

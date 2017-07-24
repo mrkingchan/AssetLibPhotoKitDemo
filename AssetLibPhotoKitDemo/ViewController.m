@@ -107,6 +107,18 @@
     Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor orangeColor];
     [cell setCellWithData:_photos[indexPath.row]];
+    cell.complete = ^(NSURL *videoUrl) {
+        NSLog(@"videoUrlPath = %@",videoUrl);
+        //注意这里要在主线程进行
+        dispatch_async(dispatch_get_main_queue(), ^{
+            MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:videoUrl];
+            [self presentViewController:moviePlayer animated:YES completion:nil];
+            [moviePlayer.moviePlayer prepareToPlay];
+            [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+            [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
+            [moviePlayer.view setFrame:self.view.bounds];
+        });
+    };
     return cell;
 }
 
@@ -133,49 +145,49 @@
 }
 
 #pragma mark --UICollectionViewDelegate
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    Cell *cell = (Cell *)[_collectionView cellForItemAtIndexPath:indexPath];
-    ALAsset *source = _photos[indexPath.row];
-    NSMutableArray *temPhotots = [NSMutableArray new];
-    NSString *typeStr = [source valueForProperty:ALAssetPropertyType];
-    if ([typeStr isEqualToString:ALAssetTypePhoto]) {
-        //照片
-        [temPhotots addObject:[UIImage imageWithCGImage:[source thumbnail]]];
-        //照片查看器
-        /*MJPhotoBrowser *browser = [MJPhotoBrowser new];
-        NSMutableArray *temArray = [NSMutableArray new];
-        for (UIImage *image in temPhotots) {
-            MJPhoto *photot = [MJPhoto new];
-            photot.srcImageView = cell.imageView;
-            [temPhotots addObject:photot];
-        }
-        browser.currentPhotoIndex = 0;
-        browser.showSaveBtn = NO;
-        [browser  show];*/
-    } else if ([typeStr isEqualToString:ALAssetTypeVideo]) {
-        //视频
-        NSURL *url = [source valueForProperty:ALAssetPropertyAssetURL];
-        MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:url];
-        [moviePlayer.moviePlayer prepareToPlay];
-        [self presentViewController:moviePlayer animated:YES completion:nil];
-        [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
-        [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
-        [moviePlayer.view setFrame:self.view.bounds];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                selector:@selector(movieFinishedCallback:)
-                                                    name:MPMoviePlayerPlaybackDidFinishNotification
-                                                  object:moviePlayer.moviePlayer];
-        
-        /*AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:url options:nil];
-        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
-        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
-        playerLayer.frame = self.view.layer.bounds;
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-        [self.view.layer addSublayer:playerLayer];
-        [player play];*/
-    }
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    Cell *cell = (Cell *)[_collectionView cellForItemAtIndexPath:indexPath];
+//    ALAsset *source = _photos[indexPath.row];
+//    NSMutableArray *temPhotots = [NSMutableArray new];
+//    NSString *typeStr = [source valueForProperty:ALAssetPropertyType];
+//    if ([typeStr isEqualToString:ALAssetTypePhoto]) {
+//        //照片
+//        [temPhotots addObject:[UIImage imageWithCGImage:[source thumbnail]]];
+//        //照片查看器
+//        /*MJPhotoBrowser *browser = [MJPhotoBrowser new];
+//        NSMutableArray *temArray = [NSMutableArray new];
+//        for (UIImage *image in temPhotots) {
+//            MJPhoto *photot = [MJPhoto new];
+//            photot.srcImageView = cell.imageView;
+//            [temPhotots addObject:photot];
+//        }
+//        browser.currentPhotoIndex = 0;
+//        browser.showSaveBtn = NO;
+//        [browser  show];*/
+//    } else if ([typeStr isEqualToString:ALAssetTypeVideo]) {
+//        //视频
+//        NSURL *url = [source valueForProperty:ALAssetPropertyAssetURL];
+//        MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:url];
+//        [moviePlayer.moviePlayer prepareToPlay];
+//        [self presentViewController:moviePlayer animated:YES completion:nil];
+//        [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];
+//        [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
+//        [moviePlayer.view setFrame:self.view.bounds];
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                selector:@selector(movieFinishedCallback:)
+//                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+//                                                  object:moviePlayer.moviePlayer];
+//        
+//        /*AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:url options:nil];
+//        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
+//        AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
+//        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
+//        playerLayer.frame = self.view.layer.bounds;
+//        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
+//        [self.view.layer addSublayer:playerLayer];
+//        [player play];*/
+//    }
+//}
 
 ///视频播放完成以后
 - (void)movieFinishedCallback:(NSNotification *)noti {

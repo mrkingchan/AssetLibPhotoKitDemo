@@ -71,12 +71,11 @@
     Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor orangeColor];
     [cell setCellWithData:_photos[indexPath.row]];
-    
-    cell.complete = ^(NSString *videoUrlPath) {
-        NSLog(@"videoUrlPath = %@",videoUrlPath);
+    cell.complete = ^(NSURL *videoUrl) {
+        NSLog(@"videoUrlPath = %@",videoUrl);
         //注意这里要在主线程进行
         dispatch_async(dispatch_get_main_queue(), ^{
-            MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:[NSURL fileURLWithPath:videoUrlPath]];
+            MPMoviePlayerViewController *moviePlayer =[[MPMoviePlayerViewController alloc] initWithContentURL:videoUrl];
             [self presentViewController:moviePlayer animated:YES completion:nil];
             [moviePlayer.moviePlayer prepareToPlay];
             [moviePlayer.moviePlayer setControlStyle:MPMovieControlStyleFullscreen];

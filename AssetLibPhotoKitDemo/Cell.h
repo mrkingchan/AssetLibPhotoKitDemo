@@ -18,7 +18,7 @@
 
 @property(nonatomic,strong) id asset;
 
-@property(nonatomic,copy)void (^complete)(NSString *videoUrlPath);
+@property(nonatomic,copy)void (^complete)(NSURL *videoUrl);
 
 
 @end
