@@ -47,7 +47,7 @@
     [self loadAssetData];
     
     self.navigationItem.title = @"AlassetLibrary";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"PushToPhotoLit" style:UIBarButtonItemStylePlain target:self action:@selector(pushAction)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"PushToPhotoKit" style:UIBarButtonItemStylePlain target:self action:@selector(pushAction)];
 }
 
 ///pushAction

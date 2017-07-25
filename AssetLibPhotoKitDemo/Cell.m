@@ -16,8 +16,8 @@
 }
 
 @end
-@implementation Cell
 
+@implementation Cell
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -45,19 +45,23 @@
 - (void)setCellWithData:(id)image {
     _asset = image;
     if ([image isKindOfClass:[ALAsset class]]) {
+        //ALAsset
         CGImageRef  thumbnailRef = [image thumbnail];
         UIImage *thumbnailImg = [[UIImage alloc]initWithCGImage:thumbnailRef];
         [_imageView setImage:thumbnailImg];
-        id type = [image valueForProperty:ALAssetPropertyType];  //这里的type是Str类型
+        id type = [image valueForProperty:ALAssetPropertyType];
         if ([type isEqualToString:ALAssetTypeVideo]) {
+            //视频
             _video.hidden = NO;
         } else {
             _video.hidden = YES;
         }
         if ([[image  valueForProperty:ALAssetPropertyType] isEqualToString: ALAssetTypeVideo]) {
+            //视频
             _des.textColor = [UIColor redColor];
             _des.text = [NSString stringWithFormat:@"Video:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
         } else {
+            //照片
             _des.textColor = [UIColor blueColor];
             _des.text = [NSString stringWithFormat:@"photo:%@\n%@\n%@",[image valueForProperty:ALAssetPropertyDate],[image valueForProperty:ALAssetPropertyLocation],[image valueForProperty:ALAssetsGroupPropertyName]];
         }
@@ -65,7 +69,7 @@
         /*ALAssetRepresentation *representation = [image defaultRepresentation];
         UIImage *contentImage = [UIImage imageWithCGImage:[representation fullScreenImage]];*/
     } else if ([image isKindOfClass:[UIImage class]]) {
-        //存储的是image
+        //UIImage
         [_imageView setImage:image];
         _video.hidden = YES;
     } else if ([image isKindOfClass:[AVAsset class]]) {
@@ -80,6 +84,7 @@
         NSString *urlStr = [[pathStr componentsSeparatedByString:@":"] lastObject];
         [_imageView setImage:[self getImage:urlStr]];
     } else if ([image isKindOfClass:[PHAsset class]]) {
+        //PHAsset
         PHAsset *asset = (PHAsset *)image;
         NSInteger mediaType = asset.mediaType;
         PHCachingImageManager *manager = [PHCachingImageManager new];
@@ -105,6 +110,7 @@
                               resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                                   NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
                                   NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
+                                  //主线程刷新UI
                                   dispatch_async(dispatch_get_main_queue(), ^{
                                       [_imageView setImage:[self getImage:urlStr]];
                                   });
@@ -113,6 +119,7 @@
     }
 }
 
+///获取视频的第一帧图片,根据视频路径
 -(UIImage *)getImage:(NSString *)videoURL{
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoURL] options:nil];
     AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
@@ -128,7 +135,7 @@
 
 #pragma mark --private Method
 - (void)buttonAction:(id)sender {
-    if ([sender  isKindOfClass:[UITapGestureRecognizer class]]) {
+    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
         //PHAsset类
         PHCachingImageManager *manager = [PHCachingImageManager new];
         if ([_asset isKindOfClass:[PHAsset class]]) {
@@ -137,6 +144,7 @@
                 //是视频
                 [manager requestAVAssetForVideo:source
                                         options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+                                            //视频路径 存放在info里面,可以通过键值取到值
                                             NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
                                             NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
                                             if (_complete) {
@@ -145,6 +153,7 @@
                                         }];
             }
         } else if ([_asset isKindOfClass:[ALAsset class]]) {
+            //ALAsset类
             //视频
             ALAsset *source = (ALAsset *)_asset;
             if ([[source valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
