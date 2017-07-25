@@ -106,6 +106,7 @@
                             }];
 }
 
+#pragma mark --UICollectionViewDataSource&Delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }

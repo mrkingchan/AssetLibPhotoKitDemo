@@ -12,7 +12,7 @@
 #define kcellID @"cell"
 
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "CaptureVC.h"
 @interface PhotoKitVC () <UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *_collectionView;
     NSMutableArray *_photos;
@@ -39,6 +39,18 @@
     [_collectionView registerClass:[Cell class] forCellWithReuseIdentifier:kcellID];
     [self.view addSubview:_collectionView];
     [self loadAllPhotoData];
+    
+    self.navigationItem.title = @"PhotoKit";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"CameraVC" style:UIBarButtonItemStylePlain target:self action:@selector(buttonAction:)];
+    
+}
+
+#pragma mark --private Method
+- (void)buttonAction:(id)sender {
+    if ([sender isKindOfClass:[UIBarButtonItem class]]) {
+        CaptureVC *VC = [CaptureVC new];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 ///加载图片数据

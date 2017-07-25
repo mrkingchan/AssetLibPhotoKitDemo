@@ -142,7 +142,7 @@
         if ([_asset isKindOfClass:[PHAsset class]]) {
             PHAsset *source = (PHAsset *)_asset;
             if (source.mediaType == PHAssetMediaTypeVideo) {
-                //是视频
+                //视频
                 [manager requestAVAssetForVideo:source
                                         options:nil resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                                             //视频路径 存放在info里面,可以通过键值取到值
