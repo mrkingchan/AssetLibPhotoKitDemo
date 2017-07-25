@@ -19,6 +19,7 @@
 
 @implementation Cell
 
+#pragma mark --init
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -110,7 +111,7 @@
                               resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
                                   NSString *pathStr = info[@"PHImageFileSandboxExtensionTokenKey"];
                                   NSString *urlStr = [[pathStr componentsSeparatedByString:@";"] lastObject];
-                                  //主线程刷新UI
+                                  //切换到主线程刷新UI
                                   dispatch_async(dispatch_get_main_queue(), ^{
                                       [_imageView setImage:[self getImage:urlStr]];
                                   });

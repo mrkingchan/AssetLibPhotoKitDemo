@@ -19,6 +19,7 @@
 #import "MWPhoto.h"
 #import "MWPhotoBrowser.h"
 
+
 @interface ViewController () <UICollectionViewDelegate,UICollectionViewDataSource> {
     ALAssetsLibrary *_lib;
     NSMutableArray *_photos;
@@ -37,6 +38,8 @@
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     
+    layout.headerReferenceSize = CGSizeMake(200, 80);
+    
     ///初始化UI
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor grayColor];
@@ -46,7 +49,7 @@
     [self.view addSubview:_collectionView];
     [self loadAssetData];
     
-    self.navigationItem.title = @"AlassetLibrary";
+//    self.navigationItem.title = @"AlassetLibrary";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"PushToPhotoKit" style:UIBarButtonItemStylePlain target:self action:@selector(pushAction)];
 }
 
@@ -101,6 +104,10 @@
                             } failureBlock:^(NSError *error) {
                                 NSLog(@"Asset group not found,error = %@",error);
                             }];
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
