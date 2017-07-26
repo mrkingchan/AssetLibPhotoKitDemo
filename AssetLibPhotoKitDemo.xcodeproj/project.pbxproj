@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		668AD94E94B8B4B952BAA012 /* libPods-AssetLibPhotoKitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D76632057A1F1D79C84A538 /* libPods-AssetLibPhotoKitDemo.a */; };
 		D2896CEE1F2711C1009F33FA /* CaptureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CED1F2711C1009F33FA /* CaptureVC.m */; };
+		D2896CF31F271CDC009F33FA /* CameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF01F271CDC009F33FA /* CameraVC.m */; };
+		D2896CF41F271CDC009F33FA /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF21F271CDC009F33FA /* PhotoManager.m */; };
+		D2896CF71F2834D3009F33FA /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF61F2834D3009F33FA /* CaptureViewController.m */; };
 		D29A6D971F21AB50005B478D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D961F21AB50005B478D /* main.m */; };
 		D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D991F21AB50005B478D /* AppDelegate.m */; };
 		D29A6D9D1F21AB50005B478D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D9C1F21AB50005B478D /* ViewController.m */; };
@@ -44,6 +47,12 @@
 		A1E03141F524B77FC26BF20F /* Pods-AssetLibPhotoKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssetLibPhotoKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AssetLibPhotoKitDemo/Pods-AssetLibPhotoKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D2896CEC1F2711C1009F33FA /* CaptureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureVC.h; sourceTree = "<group>"; };
 		D2896CED1F2711C1009F33FA /* CaptureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureVC.m; sourceTree = "<group>"; };
+		D2896CEF1F271CDC009F33FA /* CameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraVC.h; sourceTree = "<group>"; };
+		D2896CF01F271CDC009F33FA /* CameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraVC.m; sourceTree = "<group>"; };
+		D2896CF11F271CDC009F33FA /* PhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoManager.h; sourceTree = "<group>"; };
+		D2896CF21F271CDC009F33FA /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
+		D2896CF51F2834D3009F33FA /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
+		D2896CF61F2834D3009F33FA /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
 		D29A6D921F21AB50005B478D /* AssetLibPhotoKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetLibPhotoKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D29A6D961F21AB50005B478D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D29A6D981F21AB50005B478D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -139,6 +148,12 @@
 				D29A6DC91F21B2B4005B478D /* Cell.m */,
 				D2896CEC1F2711C1009F33FA /* CaptureVC.h */,
 				D2896CED1F2711C1009F33FA /* CaptureVC.m */,
+				D2896CEF1F271CDC009F33FA /* CameraVC.h */,
+				D2896CF01F271CDC009F33FA /* CameraVC.m */,
+				D2896CF11F271CDC009F33FA /* PhotoManager.h */,
+				D2896CF21F271CDC009F33FA /* PhotoManager.m */,
+				D2896CF51F2834D3009F33FA /* CaptureViewController.h */,
+				D2896CF61F2834D3009F33FA /* CaptureViewController.m */,
 				D29A6D9E1F21AB50005B478D /* Main.storyboard */,
 				D29A6DA11F21AB50005B478D /* Assets.xcassets */,
 				D29A6DA31F21AB50005B478D /* LaunchScreen.storyboard */,
@@ -372,7 +387,10 @@
 				D29A6DCA1F21B2B4005B478D /* Cell.m in Sources */,
 				D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */,
 				D2896CEE1F2711C1009F33FA /* CaptureVC.m in Sources */,
+				D2896CF31F271CDC009F33FA /* CameraVC.m in Sources */,
+				D2896CF71F2834D3009F33FA /* CaptureViewController.m in Sources */,
 				D29A6DCD1F21D8AB005B478D /* PhotoKitVC.m in Sources */,
+				D2896CF41F271CDC009F33FA /* PhotoManager.m in Sources */,
 				D29A6D971F21AB50005B478D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
