@@ -13,6 +13,8 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import "CameraVC.h"
+
+#import "VideoPlayerView.h"
 @interface PhotoKitVC () <UICollectionViewDataSource,UICollectionViewDelegate> {
     UICollectionView *_collectionView;
     NSMutableArray *_photos;
@@ -76,7 +78,7 @@
     return _photos.count;
 }
 
-- ( UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     Cell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kcellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor orangeColor];
     [cell setCellWithData:_photos[indexPath.row]];
@@ -91,6 +93,12 @@
             [moviePlayer.view setBackgroundColor:[UIColor clearColor]];
             [moviePlayer.view setFrame:self.view.bounds];
         });
+        /*dispatch_async(dispatch_get_main_queue(), ^{
+            VideoPlayerView *playerView = [[VideoPlayerView alloc] initWithFilePath:videoUrl
+                                                                           isRepeat:YES frame:[UIScreen mainScreen].bounds];
+            playerView.backgroundColor = [UIColor blackColor];
+            [[UIApplication sharedApplication].keyWindow addSubview:playerView];
+        });*/
     };
     return cell;
 }

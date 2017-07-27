@@ -12,11 +12,15 @@
 		D2896CF31F271CDC009F33FA /* CameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF01F271CDC009F33FA /* CameraVC.m */; };
 		D2896CF41F271CDC009F33FA /* PhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF21F271CDC009F33FA /* PhotoManager.m */; };
 		D2896CF71F2834D3009F33FA /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF61F2834D3009F33FA /* CaptureViewController.m */; };
+		D2896CFA1F2886E1009F33FA /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CF91F2886E1009F33FA /* VideoPlayerView.m */; };
+		D2896CFD1F28880C009F33FA /* UIButton+TouchAreaInsets.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CFC1F28880C009F33FA /* UIButton+TouchAreaInsets.m */; };
+		D2896D001F28890C009F33FA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = D2896CFF1F28890C009F33FA /* UIView+Frame.m */; };
+		D28BC1161F29BAB2007EAB29 /* VideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D28BC1151F29BAB2007EAB29 /* VideoView.m */; };
 		D29A6D971F21AB50005B478D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D961F21AB50005B478D /* main.m */; };
 		D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D991F21AB50005B478D /* AppDelegate.m */; };
 		D29A6D9D1F21AB50005B478D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6D9C1F21AB50005B478D /* ViewController.m */; };
 		D29A6DA01F21AB50005B478D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D29A6D9E1F21AB50005B478D /* Main.storyboard */; };
-		D29A6DA21F21AB50005B478D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29A6DA11F21AB50005B478D /* Assets.xcassets */; };
+		D29A6DA21F21AB50005B478D /* ImageAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D29A6DA11F21AB50005B478D /* ImageAssets.xcassets */; };
 		D29A6DA51F21AB50005B478D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D29A6DA31F21AB50005B478D /* LaunchScreen.storyboard */; };
 		D29A6DB01F21AB50005B478D /* AssetLibPhotoKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DAF1F21AB50005B478D /* AssetLibPhotoKitDemoTests.m */; };
 		D29A6DBB1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D29A6DBA1F21AB50005B478D /* AssetLibPhotoKitDemoUITests.m */; };
@@ -53,6 +57,14 @@
 		D2896CF21F271CDC009F33FA /* PhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoManager.m; sourceTree = "<group>"; };
 		D2896CF51F2834D3009F33FA /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureViewController.h; sourceTree = "<group>"; };
 		D2896CF61F2834D3009F33FA /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureViewController.m; sourceTree = "<group>"; };
+		D2896CF81F2886E1009F33FA /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
+		D2896CF91F2886E1009F33FA /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
+		D2896CFB1F28880C009F33FA /* UIButton+TouchAreaInsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+TouchAreaInsets.h"; sourceTree = "<group>"; };
+		D2896CFC1F28880C009F33FA /* UIButton+TouchAreaInsets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+TouchAreaInsets.m"; sourceTree = "<group>"; };
+		D2896CFE1F28890C009F33FA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		D2896CFF1F28890C009F33FA /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		D28BC1141F29BAB2007EAB29 /* VideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoView.h; sourceTree = "<group>"; };
+		D28BC1151F29BAB2007EAB29 /* VideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoView.m; sourceTree = "<group>"; };
 		D29A6D921F21AB50005B478D /* AssetLibPhotoKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetLibPhotoKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D29A6D961F21AB50005B478D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D29A6D981F21AB50005B478D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,7 +72,7 @@
 		D29A6D9B1F21AB50005B478D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D29A6D9C1F21AB50005B478D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D29A6D9F1F21AB50005B478D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D29A6DA11F21AB50005B478D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D29A6DA11F21AB50005B478D /* ImageAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImageAssets.xcassets; sourceTree = "<group>"; };
 		D29A6DA41F21AB50005B478D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D29A6DA61F21AB50005B478D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D29A6DAB1F21AB50005B478D /* AssetLibPhotoKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssetLibPhotoKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +166,16 @@
 				D2896CF21F271CDC009F33FA /* PhotoManager.m */,
 				D2896CF51F2834D3009F33FA /* CaptureViewController.h */,
 				D2896CF61F2834D3009F33FA /* CaptureViewController.m */,
+				D2896CF81F2886E1009F33FA /* VideoPlayerView.h */,
+				D2896CF91F2886E1009F33FA /* VideoPlayerView.m */,
+				D2896CFE1F28890C009F33FA /* UIView+Frame.h */,
+				D2896CFF1F28890C009F33FA /* UIView+Frame.m */,
+				D2896CFB1F28880C009F33FA /* UIButton+TouchAreaInsets.h */,
+				D2896CFC1F28880C009F33FA /* UIButton+TouchAreaInsets.m */,
+				D28BC1141F29BAB2007EAB29 /* VideoView.h */,
+				D28BC1151F29BAB2007EAB29 /* VideoView.m */,
 				D29A6D9E1F21AB50005B478D /* Main.storyboard */,
-				D29A6DA11F21AB50005B478D /* Assets.xcassets */,
+				D29A6DA11F21AB50005B478D /* ImageAssets.xcassets */,
 				D29A6DA31F21AB50005B478D /* LaunchScreen.storyboard */,
 				D29A6DA61F21AB50005B478D /* Info.plist */,
 				D29A6D951F21AB50005B478D /* Supporting Files */,
@@ -309,7 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D29A6DA51F21AB50005B478D /* LaunchScreen.storyboard in Resources */,
-				D29A6DA21F21AB50005B478D /* Assets.xcassets in Resources */,
+				D29A6DA21F21AB50005B478D /* ImageAssets.xcassets in Resources */,
 				D29A6DA01F21AB50005B478D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,13 +403,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2896D001F28890C009F33FA /* UIView+Frame.m in Sources */,
 				D29A6D9D1F21AB50005B478D /* ViewController.m in Sources */,
 				D29A6DCA1F21B2B4005B478D /* Cell.m in Sources */,
 				D29A6D9A1F21AB50005B478D /* AppDelegate.m in Sources */,
 				D2896CEE1F2711C1009F33FA /* CaptureVC.m in Sources */,
+				D28BC1161F29BAB2007EAB29 /* VideoView.m in Sources */,
 				D2896CF31F271CDC009F33FA /* CameraVC.m in Sources */,
+				D2896CFA1F2886E1009F33FA /* VideoPlayerView.m in Sources */,
 				D2896CF71F2834D3009F33FA /* CaptureViewController.m in Sources */,
 				D29A6DCD1F21D8AB005B478D /* PhotoKitVC.m in Sources */,
+				D2896CFD1F28880C009F33FA /* UIButton+TouchAreaInsets.m in Sources */,
 				D2896CF41F271CDC009F33FA /* PhotoManager.m in Sources */,
 				D29A6D971F21AB50005B478D /* main.m in Sources */,
 			);
