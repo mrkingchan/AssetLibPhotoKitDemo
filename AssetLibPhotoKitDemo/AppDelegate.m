@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "CaptureVC.h"
 @interface AppDelegate ()
 
 @end
@@ -19,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.backgroundColor = [UIColor whiteColor];
-    CaptureVC *VC = [CaptureVC new];
+    ViewController *VC = [ViewController new];
     UINavigationController *rootVC = [[UINavigationController alloc] initWithRootViewController:VC];
     _window.rootViewController = rootVC;
     [self setGlobalApperance];
