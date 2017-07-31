@@ -38,8 +38,6 @@
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     
-    layout.headerReferenceSize = CGSizeMake(200, 80);
-    
     ///初始化UI
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height) collectionViewLayout:layout];
     _collectionView.backgroundColor = [UIColor grayColor];

@@ -72,16 +72,44 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
 
 #pragma mark --前后台
 - (void)appDidEnterBackground:(NSNotification *)noti {
-    
+    if (_isPlay) {
+        //继续播放
+        NSArray *tracks = [_currentItem tracks];
+        for (AVPlayerItemTrack *track in tracks) {
+            if ([track.assetTrack  hasMediaCharacteristic:AVMediaCharacteristicVisual]) {
+                track.enabled = YES;
+            }
+        }
+        _AVPlayerLayer.player = nil;
+        [_player play];
+        _state = PlayerStatePlaying;
+    } else {
+        _state = PlayerStateStopped;
+    }
 }
 
 - (void)appWillEnterForeground:(NSNotification *)noti {
-    
+    if (_isPlay) {
+        //如果是播放中，则继续播放
+        NSArray *tracks = [self.currentItem tracks];
+        for (AVPlayerItemTrack *playerItemTrack in tracks) {
+            if ([playerItemTrack.assetTrack hasMediaCharacteristic:AVMediaCharacteristicVisual]) {
+                playerItemTrack.enabled = YES;
+            }
+        }
+        _AVPlayerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
+        _AVPlayerLayer.frame = self.bounds;
+        _AVPlayerLayer.videoGravity = AVLayerVideoGravityResize;
+        [self.layer insertSublayer:_AVPlayerLayer atIndex:0];
+        [self.player play];
+        self.state = PlayerStatePlaying;
+    }else{
+        self.state = PlayerStateStopped;
+    }
 }
 
 #pragma mark --播放完成
 - (void)playDidFinished:(NSNotification *)noti {
-    
 }
 
 #pragma mark --setUI
@@ -152,7 +180,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         make.width.mas_equalTo(40);
     }];
 }
-
 
 - (void)setPlayerWithAVplayerItem:(AVPlayerItem *)item {
     if (_currentItem == item) {

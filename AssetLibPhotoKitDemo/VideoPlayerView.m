@@ -979,7 +979,6 @@ static void *PlayViewStatusObservationContext = &PlayViewStatusObservationContex
         CGFloat imageWidth = imageSize.width;
         CGFloat imageHeight = imageSize.height;
         
-        
         // 设置伸缩比例
         CGFloat widthRatio = boundsWidth/imageWidth;
         CGFloat heightRatio = boundsHeight/imageHeight;

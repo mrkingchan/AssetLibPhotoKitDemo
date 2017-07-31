@@ -136,6 +136,7 @@
 
 #pragma mark --private Method
 - (void)buttonAction:(id)sender {
+    //视频点击处理
     if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
         //PHAsset类
         PHCachingImageManager *manager = [PHCachingImageManager new];

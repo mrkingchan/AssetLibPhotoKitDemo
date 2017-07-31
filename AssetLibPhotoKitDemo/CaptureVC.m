@@ -8,6 +8,8 @@
 
 #import "CaptureVC.h"
 #import <AVFoundation/AVFoundation.h>
+#import <Photos/Photos.h>
+
 #define CompressionVideoPaht [NSHomeDirectory() stringByAppendingFormat:@"/Documents/Compression"]
 
 @interface CaptureVC () <AVCaptureFileOutputRecordingDelegate> {
@@ -45,7 +47,7 @@
     if ([_session canSetSessionPreset:AVCaptureSessionPresetHigh]) {
         [_session setSessionPreset:AVCaptureSessionPresetHigh];
     }
-    
+    self.navigationItem.title = NSStringFromClass([self class]);
     //设备
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     //设置设备闪光灯模式
@@ -91,6 +93,26 @@
     _preView.frame = self.view.bounds;
     [self.view.layer addSublayer:_preView];
     
+    //获取最近的一张图片
+    PHFetchOptions *option = [PHFetchOptions new];
+    option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    PHFetchResult *results = [PHAsset fetchAssetsWithOptions:option];
+    if ([results  countOfAssetsWithMediaType:PHAssetMediaTypeImage]) {
+        id asset = [results firstObject];
+        if ([asset isKindOfClass:[PHAsset class]]) {
+            PHAsset *resultAsset = (PHAsset *)asset;
+            if (resultAsset.mediaType == PHAssetMediaTypeImage) {
+                PHCachingImageManager  *manager = [PHCachingImageManager new];
+                [manager requestImageForAsset:resultAsset
+                                   targetSize:CGSizeMake(200, 200)
+                                  contentMode:PHImageContentModeDefault
+                                      options:nil
+                                resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                                    NSLog(@"result = %@\ninfo = %@",result,info);
+                                }];
+            }
+        }
+    }
 }
 
 #pragma mark --private Method
@@ -141,6 +163,7 @@
     }
 }
 
+#pragma mark --录制路径
 + (NSString *)getFilePathWithIsCompression:(BOOL)isCompression {
     //用时间给文件全名 保证其唯一性，以免重复，在测试的时候其实可以判断文件是否存在若存在，则删除，重新生成文件即可
     NSDateFormatter *formater = [NSDateFormatter new];
